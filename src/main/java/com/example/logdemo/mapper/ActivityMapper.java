@@ -5,7 +5,7 @@ import com.example.logdemo.pojo.Activity;
 
 public interface ActivityMapper extends BaseMapper<Activity> {
 
-    /*int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Activity record);
 
@@ -15,6 +15,6 @@ public interface ActivityMapper extends BaseMapper<Activity> {
 
     int updateByPrimaryKeySelective(Activity record);
 
-    int updateByPrimaryKey(Activity record);*/
+    int updateByPrimaryKey(Activity record);
 
 }
