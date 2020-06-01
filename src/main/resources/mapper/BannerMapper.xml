@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.logdemo.mapper.BannerMapper">
+  <resultMap id="BaseResultMap" type="com.example.logdemo.pojo.Banner">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="banner_img" jdbcType="VARCHAR" property="bannerImg" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="room_id" jdbcType="BIGINT" property="roomId" />
+    <result column="business_id" jdbcType="BIGINT" property="businessId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, banner_img, description, room_id, business_id, create_time, modified_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from banner
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from banner
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.logdemo.pojo.Banner">
+    insert into banner (id, banner_img, description, 
+      room_id, business_id, create_time, 
+      modified_time)
+    values (#{id,jdbcType=BIGINT}, #{bannerImg,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{roomId,jdbcType=BIGINT}, #{businessId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.logdemo.pojo.Banner">
+    insert into banner
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bannerImg != null">
+        banner_img,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="businessId != null">
+        business_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="bannerImg != null">
+        #{bannerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null">
+        #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.logdemo.pojo.Banner">
+    update banner
+    <set>
+      <if test="bannerImg != null">
+        banner_img = #{bannerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null">
+        room_id = #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="businessId != null">
+        business_id = #{businessId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.logdemo.pojo.Banner">
+    update banner
+    set banner_img = #{bannerImg,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=BIGINT},
+      business_id = #{businessId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

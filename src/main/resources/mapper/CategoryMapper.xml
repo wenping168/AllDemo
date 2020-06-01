@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.logdemo.mapper.CategoryMapper">
+  <resultMap id="BaseResultMap" type="com.example.logdemo.pojo.Category">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="status" jdbcType="BIGINT" property="status" />
+    <result column="sort_order" jdbcType="BIGINT" property="sortOrder" />
+    <result column="is_parent" jdbcType="SMALLINT" property="isParent" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="category_level" jdbcType="SMALLINT" property="categoryLevel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, parent_id, 'name', 'status', sort_order, is_parent, create_time, modified_time, 
+    category_level
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from category
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from category
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.logdemo.pojo.Category">
+    insert into category (id, parent_id, 'name', 
+      'status', sort_order, is_parent, 
+      create_time, modified_time, category_level
+      )
+    values (#{id,jdbcType=BIGINT}, #{parentId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIGINT}, #{sortOrder,jdbcType=BIGINT}, #{isParent,jdbcType=SMALLINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, #{categoryLevel,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.logdemo.pojo.Category">
+    insert into category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="name != null">
+        'name',
+      </if>
+      <if test="status != null">
+        'status',
+      </if>
+      <if test="sortOrder != null">
+        sort_order,
+      </if>
+      <if test="isParent != null">
+        is_parent,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="categoryLevel != null">
+        category_level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIGINT},
+      </if>
+      <if test="sortOrder != null">
+        #{sortOrder,jdbcType=BIGINT},
+      </if>
+      <if test="isParent != null">
+        #{isParent,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="categoryLevel != null">
+        #{categoryLevel,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.logdemo.pojo.Category">
+    update category
+    <set>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        'name' = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        'status' = #{status,jdbcType=BIGINT},
+      </if>
+      <if test="sortOrder != null">
+        sort_order = #{sortOrder,jdbcType=BIGINT},
+      </if>
+      <if test="isParent != null">
+        is_parent = #{isParent,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="categoryLevel != null">
+        category_level = #{categoryLevel,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.logdemo.pojo.Category">
+    update category
+    set parent_id = #{parentId,jdbcType=BIGINT},
+      'name' = #{name,jdbcType=VARCHAR},
+      'status' = #{status,jdbcType=BIGINT},
+      sort_order = #{sortOrder,jdbcType=BIGINT},
+      is_parent = #{isParent,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      category_level = #{categoryLevel,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

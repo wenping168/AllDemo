@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.logdemo.mapper.GoodsImagesMapper">
+
+  <resultMap id="BaseResultMap" type="com.example.logdemo.pojo.GoodsImages">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="seq" jdbcType="BIGINT" property="seq" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="img_local" jdbcType="SMALLINT" property="imgLocal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, gmt_create, gmt_modified, url, seq, goods_id, shop_id, img_local
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_images
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from goods_images
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.logdemo.pojo.GoodsImages">
+    insert into goods_images (id, gmt_create, gmt_modified, 
+      url, seq, goods_id, shop_id, 
+      img_local)
+    values (#{id,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{url,jdbcType=VARCHAR}, #{seq,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{shopId,jdbcType=BIGINT}, 
+      #{imgLocal,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.logdemo.pojo.GoodsImages">
+    insert into goods_images
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="seq != null">
+        seq,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="imgLocal != null">
+        img_local,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null">
+        #{seq,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="imgLocal != null">
+        #{imgLocal,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.logdemo.pojo.GoodsImages">
+    update goods_images
+    <set>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="seq != null">
+        seq = #{seq,jdbcType=BIGINT},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="imgLocal != null">
+        img_local = #{imgLocal,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.logdemo.pojo.GoodsImages">
+    update goods_images
+    set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      seq = #{seq,jdbcType=BIGINT},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      img_local = #{imgLocal,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.logdemo.mapper.UserOrderMapper">
+  <resultMap id="BaseResultMap" type="com.example.logdemo.pojo.UserOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="total_price" jdbcType="DOUBLE" property="totalPrice" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="real_price" jdbcType="DOUBLE" property="realPrice" />
+    <result column="activity_id" jdbcType="BIGINT" property="activityId" />
+    <result column="address_id" jdbcType="BIGINT" property="addressId" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_time, modified_time, order_no, total_price, 'status', user_id, real_price, 
+    activity_id, address_id, address, open_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.logdemo.pojo.UserOrder">
+    insert into user_order (id, create_time, modified_time, 
+      order_no, total_price, 'status', 
+      user_id, real_price, activity_id, 
+      address_id, address, open_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{orderNo,jdbcType=VARCHAR}, #{totalPrice,jdbcType=DOUBLE}, #{status,jdbcType=SMALLINT}, 
+      #{userId,jdbcType=BIGINT}, #{realPrice,jdbcType=DOUBLE}, #{activityId,jdbcType=BIGINT}, 
+      #{addressId,jdbcType=BIGINT}, #{address,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.logdemo.pojo.UserOrder">
+    insert into user_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="status != null">
+        'status',
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="realPrice != null">
+        real_price,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="addressId != null">
+        address_id,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="realPrice != null">
+        #{realPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="addressId != null">
+        #{addressId,jdbcType=BIGINT},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.logdemo.pojo.UserOrder">
+    update user_order
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null">
+        'status' = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="realPrice != null">
+        real_price = #{realPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=BIGINT},
+      </if>
+      <if test="addressId != null">
+        address_id = #{addressId,jdbcType=BIGINT},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.logdemo.pojo.UserOrder">
+    update user_order
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=DOUBLE},
+      'status' = #{status,jdbcType=SMALLINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      real_price = #{realPrice,jdbcType=DOUBLE},
+      activity_id = #{activityId,jdbcType=BIGINT},
+      address_id = #{addressId,jdbcType=BIGINT},
+      address = #{address,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

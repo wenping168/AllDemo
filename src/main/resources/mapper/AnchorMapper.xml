@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.logdemo.mapper.AnchorMapper">
+  <resultMap id="BaseResultMap" type="com.example.logdemo.pojo.Anchor">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="anchor_name" jdbcType="VARCHAR" property="anchorName" />
+    <result column="name_en" jdbcType="VARCHAR" property="nameEn" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modiffied_time" jdbcType="TIMESTAMP" property="modiffiedTime" />
+    <result column="anchor_img" jdbcType="VARCHAR" property="anchorImg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, anchor_name, name_en, 'type', phone, open_id, create_time, modiffied_time, anchor_img
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from anchor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from anchor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.logdemo.pojo.Anchor">
+    insert into anchor (id, anchor_name, name_en, 
+      'type', phone, open_id, 
+      create_time, modiffied_time, anchor_img
+      )
+    values (#{id,jdbcType=INTEGER}, #{anchorName,jdbcType=VARCHAR}, #{nameEn,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modiffiedTime,jdbcType=TIMESTAMP}, #{anchorImg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.logdemo.pojo.Anchor">
+    insert into anchor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="anchorName != null">
+        anchor_name,
+      </if>
+      <if test="nameEn != null">
+        name_en,
+      </if>
+      <if test="type != null">
+        'type',
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modiffiedTime != null">
+        modiffied_time,
+      </if>
+      <if test="anchorImg != null">
+        anchor_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="anchorName != null">
+        #{anchorName,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null">
+        #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modiffiedTime != null">
+        #{modiffiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="anchorImg != null">
+        #{anchorImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.logdemo.pojo.Anchor">
+    update anchor
+    <set>
+      <if test="anchorName != null">
+        anchor_name = #{anchorName,jdbcType=VARCHAR},
+      </if>
+      <if test="nameEn != null">
+        name_en = #{nameEn,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        'type' = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modiffiedTime != null">
+        modiffied_time = #{modiffiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="anchorImg != null">
+        anchor_img = #{anchorImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.logdemo.pojo.Anchor">
+    update anchor
+    set anchor_name = #{anchorName,jdbcType=VARCHAR},
+      name_en = #{nameEn,jdbcType=VARCHAR},
+      'type' = #{type,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modiffied_time = #{modiffiedTime,jdbcType=TIMESTAMP},
+      anchor_img = #{anchorImg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

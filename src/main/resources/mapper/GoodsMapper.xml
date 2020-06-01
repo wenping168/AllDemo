@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.logdemo.mapper.GoodsMapper">
+
+  <resultMap id="BaseResultMap" type="com.example.logdemo.pojo.Goods">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="descrip" jdbcType="VARCHAR" property="descrip" />
+    <result column="price" jdbcType="NUMERIC" property="price" />
+    <result column="num" jdbcType="BIGINT" property="num" />
+    <result column="barcode" jdbcType="VARCHAR" property="barcode" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="cid" jdbcType="BIGINT" property="cid" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="modified_time" jdbcType="DATE" property="modifiedTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="modified_user" jdbcType="VARCHAR" property="modifiedUser" />
+    <result column="old_price" jdbcType="NUMERIC" property="oldPrice" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="shop_type_id" jdbcType="INTEGER" property="shopTypeId" />
+    <result column="pay_count" jdbcType="BIGINT" property="payCount" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, descrip, price, num, barcode, image, cid, 'status', create_time, modified_time, 
+    create_user, modified_user, old_price, shop_id, shop_type_id, pay_count, telephone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.logdemo.pojo.Goods">
+    insert into goods (id, title, descrip, 
+      price, num, barcode, 
+      image, cid, 'status', 
+      create_time, modified_time, create_user, 
+      modified_user, old_price, shop_id, 
+      shop_type_id, pay_count, telephone
+      )
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{descrip,jdbcType=VARCHAR}, 
+      #{price,jdbcType=NUMERIC}, #{num,jdbcType=BIGINT}, #{barcode,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{cid,jdbcType=BIGINT}, #{status,jdbcType=SMALLINT}, 
+      #{createTime,jdbcType=DATE}, #{modifiedTime,jdbcType=DATE}, #{createUser,jdbcType=VARCHAR}, 
+      #{modifiedUser,jdbcType=VARCHAR}, #{oldPrice,jdbcType=NUMERIC}, #{shopId,jdbcType=BIGINT}, 
+      #{shopTypeId,jdbcType=INTEGER}, #{payCount,jdbcType=BIGINT}, #{telephone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.logdemo.pojo.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="descrip != null">
+        descrip,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="barcode != null">
+        barcode,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+      <if test="status != null">
+        'status',
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="modifiedUser != null">
+        modified_user,
+      </if>
+      <if test="oldPrice != null">
+        old_price,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="shopTypeId != null">
+        shop_type_id,
+      </if>
+      <if test="payCount != null">
+        pay_count,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="descrip != null">
+        #{descrip,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=NUMERIC},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=BIGINT},
+      </if>
+      <if test="barcode != null">
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedUser != null">
+        #{modifiedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="oldPrice != null">
+        #{oldPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="shopTypeId != null">
+        #{shopTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="payCount != null">
+        #{payCount,jdbcType=BIGINT},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.logdemo.pojo.Goods">
+    update goods
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="descrip != null">
+        descrip = #{descrip,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=NUMERIC},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=BIGINT},
+      </if>
+      <if test="barcode != null">
+        barcode = #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        'status' = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=DATE},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedUser != null">
+        modified_user = #{modifiedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="oldPrice != null">
+        old_price = #{oldPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="shopTypeId != null">
+        shop_type_id = #{shopTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="payCount != null">
+        pay_count = #{payCount,jdbcType=BIGINT},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.logdemo.pojo.Goods">
+    update goods
+    set title = #{title,jdbcType=VARCHAR},
+      descrip = #{descrip,jdbcType=VARCHAR},
+      price = #{price,jdbcType=NUMERIC},
+      num = #{num,jdbcType=BIGINT},
+      barcode = #{barcode,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      cid = #{cid,jdbcType=BIGINT},
+      'status' = #{status,jdbcType=SMALLINT},
+      create_time = #{createTime,jdbcType=DATE},
+      modified_time = #{modifiedTime,jdbcType=DATE},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      modified_user = #{modifiedUser,jdbcType=VARCHAR},
+      old_price = #{oldPrice,jdbcType=NUMERIC},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      shop_type_id = #{shopTypeId,jdbcType=INTEGER},
+      pay_count = #{payCount,jdbcType=BIGINT},
+      telephone = #{telephone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+ 
+</mapper>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.logdemo.mapper.LiveRoomMapper">
+
+  <resultMap id="BaseResultMap" type="com.example.logdemo.pojo.LiveRoom">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="live_title" jdbcType="VARCHAR" property="liveTitle" />
+    <result column="cover_img" jdbcType="VARCHAR" property="coverImg" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="live_status" jdbcType="VARCHAR" property="liveStatus" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="anchor_name" jdbcType="VARCHAR" property="anchorName" />
+    <result column="anchor_img" jdbcType="VARCHAR" property="anchorImg" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="room_id" jdbcType="BIGINT" property="roomId" />
+    <result column="anchor_id" jdbcType="BIGINT" property="anchorId" />
+    <result column="cid" jdbcType="BIGINT" property="cid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, live_title, cover_img, url, live_status, start_time, end_time, anchor_name, anchor_img, 
+    create_time, modified_time, room_id, anchor_id, cid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from live_room
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from live_room
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.logdemo.pojo.LiveRoom">
+    insert into live_room (id, live_title, cover_img, 
+      url, live_status, start_time, 
+      end_time, anchor_name, anchor_img, 
+      create_time, modified_time, room_id, 
+      anchor_id, cid)
+    values (#{id,jdbcType=INTEGER}, #{liveTitle,jdbcType=VARCHAR}, #{coverImg,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{liveStatus,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{anchorName,jdbcType=VARCHAR}, #{anchorImg,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, #{roomId,jdbcType=BIGINT}, 
+      #{anchorId,jdbcType=BIGINT}, #{cid,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.logdemo.pojo.LiveRoom">
+    insert into live_room
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="liveTitle != null">
+        live_title,
+      </if>
+      <if test="coverImg != null">
+        cover_img,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="liveStatus != null">
+        live_status,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="anchorName != null">
+        anchor_name,
+      </if>
+      <if test="anchorImg != null">
+        anchor_img,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="anchorId != null">
+        anchor_id,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="liveTitle != null">
+        #{liveTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImg != null">
+        #{coverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="liveStatus != null">
+        #{liveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="anchorName != null">
+        #{anchorName,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorImg != null">
+        #{anchorImg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomId != null">
+        #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="anchorId != null">
+        #{anchorId,jdbcType=BIGINT},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.logdemo.pojo.LiveRoom">
+    update live_room
+    <set>
+      <if test="liveTitle != null">
+        live_title = #{liveTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImg != null">
+        cover_img = #{coverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="liveStatus != null">
+        live_status = #{liveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="anchorName != null">
+        anchor_name = #{anchorName,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorImg != null">
+        anchor_img = #{anchorImg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomId != null">
+        room_id = #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="anchorId != null">
+        anchor_id = #{anchorId,jdbcType=BIGINT},
+      </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.logdemo.pojo.LiveRoom">
+    update live_room
+    set live_title = #{liveTitle,jdbcType=VARCHAR},
+      cover_img = #{coverImg,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      live_status = #{liveStatus,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      anchor_name = #{anchorName,jdbcType=VARCHAR},
+      anchor_img = #{anchorImg,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      room_id = #{roomId,jdbcType=BIGINT},
+      anchor_id = #{anchorId,jdbcType=BIGINT},
+      cid = #{cid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

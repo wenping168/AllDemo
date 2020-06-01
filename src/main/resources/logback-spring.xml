@@ -1,0 +1,34 @@
+<configuration>
+    <property name="LOG_FILE" value="../logdemo/logs/common/log_demo"/>
+    <property name="LOG_PATTERN" value="%d{yyyy/MM/dd-HH:mm:ss} %-5level [%thread] %logger - %msg%n"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <appender name="TIME_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--日志文件输出格式-->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>UTF-8</charset> <!-- 设置字符集 -->
+        </encoder>
+        <!-- 日志记录器的滚动策略，按日期，按大小记录 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志归档 -->
+            <fileNamePattern>${LOG_FILE}/xcx-sso-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>20MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!--日志文件保留天数-->
+            <maxHistory>15</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <root level="info">
+        <!--<appender-ref ref="Logstash"/>-->
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="TIME_FILE"/>
+    </root>
+
+</configuration>

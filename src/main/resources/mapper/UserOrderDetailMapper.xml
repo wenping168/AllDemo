@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.logdemo.mapper.UserOrderDetailMapper">
+
+  <resultMap id="BaseResultMap" type="com.example.logdemo.pojo.UserOrderDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="real_price" jdbcType="DOUBLE" property="realPrice" />
+    <result column="old_price" jdbcType="DOUBLE" property="oldPrice" />
+    <result column="order_id" jdbcType="BIGINT" property="orderId" />
+    <result column="goods_info" jdbcType="VARCHAR" property="goodsInfo" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_time, modified_time, goods_id, real_price, old_price, order_id, goods_info, 
+    shop_id, 'count', goods_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_order_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_order_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.logdemo.pojo.UserOrderDetail">
+    insert into user_order_detail (id, create_time, modified_time, 
+      goods_id, real_price, old_price, 
+      order_id, goods_info, shop_id, 
+      'count', goods_name)
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{goodsId,jdbcType=BIGINT}, #{realPrice,jdbcType=DOUBLE}, #{oldPrice,jdbcType=DOUBLE}, 
+      #{orderId,jdbcType=BIGINT}, #{goodsInfo,jdbcType=VARCHAR}, #{shopId,jdbcType=BIGINT}, 
+      #{count,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.logdemo.pojo.UserOrderDetail">
+    insert into user_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="realPrice != null">
+        real_price,
+      </if>
+      <if test="oldPrice != null">
+        old_price,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="goodsInfo != null">
+        goods_info,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="count != null">
+        'count',
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="realPrice != null">
+        #{realPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="oldPrice != null">
+        #{oldPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsInfo != null">
+        #{goodsInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.logdemo.pojo.UserOrderDetail">
+    update user_order_detail
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="realPrice != null">
+        real_price = #{realPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="oldPrice != null">
+        old_price = #{oldPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsInfo != null">
+        goods_info = #{goodsInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="count != null">
+        'count' = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.logdemo.pojo.UserOrderDetail">
+    update user_order_detail
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      real_price = #{realPrice,jdbcType=DOUBLE},
+      old_price = #{oldPrice,jdbcType=DOUBLE},
+      order_id = #{orderId,jdbcType=BIGINT},
+      goods_info = #{goodsInfo,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      'count' = #{count,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

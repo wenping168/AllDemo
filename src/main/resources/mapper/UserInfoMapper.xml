@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.logdemo.mapper.UserInfoMapper">
+
+  <resultMap id="BaseResultMap" type="com.example.logdemo.pojo.UserInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="openid" jdbcType="VARCHAR" property="openid" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="telphone" jdbcType="VARCHAR" property="telphone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="grade" jdbcType="SMALLINT" property="grade" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_name, real_name, openid, birthday, telphone, email, grade, 'password'
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.logdemo.pojo.UserInfo">
+    insert into user_info (id, user_name, real_name, 
+      openid, birthday, telphone, 
+      email, grade, 'password'
+      )
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{openid,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{telphone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{grade,jdbcType=SMALLINT}, #{password,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.logdemo.pojo.UserInfo">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="realName != null">
+        real_name,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="telphone != null">
+        telphone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="password != null">
+        'password',
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="telphone != null">
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=SMALLINT},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.logdemo.pojo.UserInfo">
+    update user_info
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="telphone != null">
+        telphone = #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=SMALLINT},
+      </if>
+      <if test="password != null">
+        'password' = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.logdemo.pojo.UserInfo">
+    update user_info
+    set user_name = #{userName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      openid = #{openid,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      telphone = #{telphone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=SMALLINT},
+      'password' = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

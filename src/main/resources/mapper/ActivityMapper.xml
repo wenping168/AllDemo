@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.logdemo.mapper.ActivityMapper">
+
+
+  <resultMap id="BaseResultMap" type="com.example.logdemo.pojo.Activity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="activity_time" jdbcType="DATE" property="activityTime" />
+    <result column="activity_img" jdbcType="VARCHAR" property="activityImg" />
+    <result column="anchor_id" jdbcType="BIGINT" property="anchorId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, activity_name, activity_time, activity_img, anchor_id, create_time, modified_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from activity
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from activity
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.logdemo.pojo.Activity">
+    insert into activity (id, activity_name, activity_time, 
+      activity_img, anchor_id, create_time, 
+      modified_time)
+    values (#{id,jdbcType=BIGINT}, #{activityName,jdbcType=VARCHAR}, #{activityTime,jdbcType=DATE}, 
+      #{activityImg,jdbcType=VARCHAR}, #{anchorId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.logdemo.pojo.Activity">
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="activityName != null">
+        activity_name,
+      </if>
+      <if test="activityTime != null">
+        activity_time,
+      </if>
+      <if test="activityImg != null">
+        activity_img,
+      </if>
+      <if test="anchorId != null">
+        anchor_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="activityName != null">
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTime != null">
+        #{activityTime,jdbcType=DATE},
+      </if>
+      <if test="activityImg != null">
+        #{activityImg,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorId != null">
+        #{anchorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.logdemo.pojo.Activity">
+    update activity
+    <set>
+      <if test="activityName != null">
+        activity_name = #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTime != null">
+        activity_time = #{activityTime,jdbcType=DATE},
+      </if>
+      <if test="activityImg != null">
+        activity_img = #{activityImg,jdbcType=VARCHAR},
+      </if>
+      <if test="anchorId != null">
+        anchor_id = #{anchorId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.logdemo.pojo.Activity">
+    update activity
+    set activity_name = #{activityName,jdbcType=VARCHAR},
+      activity_time = #{activityTime,jdbcType=DATE},
+      activity_img = #{activityImg,jdbcType=VARCHAR},
+      anchor_id = #{anchorId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+</mapper>

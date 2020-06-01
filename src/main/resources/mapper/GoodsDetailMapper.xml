@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.logdemo.mapper.GoodsDetailMapper">
+
+  <resultMap id="BaseResultMap" type="com.example.logdemo.pojo.GoodsDetail">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="count_num" jdbcType="INTEGER" property="countNum" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, model, goods_id, count_num, price, logo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods_detail
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from goods_detail
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.logdemo.pojo.GoodsDetail">
+    insert into goods_detail (id, model, goods_id, 
+      count_num, price, logo)
+    values (#{id,jdbcType=BIGINT}, #{model,jdbcType=VARCHAR}, #{goodsId,jdbcType=BIGINT}, 
+      #{countNum,jdbcType=INTEGER}, #{price,jdbcType=REAL}, #{logo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.logdemo.pojo.GoodsDetail">
+    insert into goods_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="model != null">
+        model,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="countNum != null">
+        count_num,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="countNum != null">
+        #{countNum,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.logdemo.pojo.GoodsDetail">
+    update goods_detail
+    <set>
+      <if test="model != null">
+        model = #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=BIGINT},
+      </if>
+      <if test="countNum != null">
+        count_num = #{countNum,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="logo != null">
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.logdemo.pojo.GoodsDetail">
+    update goods_detail
+    set model = #{model,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      count_num = #{countNum,jdbcType=INTEGER},
+      price = #{price,jdbcType=REAL},
+      logo = #{logo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>
